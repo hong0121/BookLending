@@ -1,11 +1,26 @@
-import {useState} from 'react'
+import { useState } from 'react';
+import axios from 'axios'; // Axios를 사용하여 HTTP 요청을 보낼 수 있도록 불러옵니다.
 
 const LoginPage = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    // Implement your login logic here
+  const handleLogin = async () => {
+    try {
+      // 사용자 입력을 JSON 형태로 만듭니다.
+      const userData = {
+        username,
+        password,
+      };
+
+      // Axios를 사용하여 POST 요청을 보냅니다.
+      const response = await axios.post('http://localhost:8080/login', userData);
+
+      // 응답을 확인하고 로그인이 성공했으면 알림 등을 표시할 수 있습니다.
+      console.log('Login successful!', response.data);
+    } catch (error) {
+      console.error('Error during login:', error);
+    }
   };
 
   return (

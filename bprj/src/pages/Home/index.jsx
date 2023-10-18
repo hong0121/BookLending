@@ -15,25 +15,11 @@ const Home = () => {
   const [booklst, setBooklst] = useState([]);
 
   useEffect(() => {
-    // 382p.
-    // 오류, Bookintro.js 같다.
     const fetchdata = async () => {
       try {
         // axios 사용
         const resp = await axios.get('http://localhost:8080/selectbook')
-          // .then(res => res.json())
-          // .then(() => setBooklst(JSON.parse(JSON.stringify(resp.data)))
-          // .then(res => res.json())
-          // .then(res => JSON.parse(JSON.stringify(res)))
-          // .then(setBooklst)
-          // .then(() => setBooklst(resp.data))
-          // .then(res => {
-          //   let v = JSON.parse(JSON.stringify(res.data));
-          //   setBooklst(v);
-          //   return (v);
-          // })
           .catch(console.error)
-        // console.log("Axios response: ", resp.data)
         setBooklst(resp.data) // 정상
       } catch (e) {
         console.log(e);
@@ -43,7 +29,6 @@ const Home = () => {
 
   }, [])
 
-  // console.log("state booklst: ", booklst); // 정상
   return (
     <div className="home-container">
       <div className="header-container">

@@ -5,6 +5,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var app = express(); // 이 부분을 추가해주세요.
+
 
 var indexRouter = require('./routes/index');
 var selectbookRouter = require('./routes/selectbook');
@@ -14,6 +16,7 @@ var usersRouter = require('./routes/users');
 const mongoose = require('mongoose');
 const router = express.Router();
 const Insertbook = require('./models/Insertbook'); // 모델 불러오기
+
 
 // 접속관련 함수와 cors는 www파일에 있다.
 
@@ -60,8 +63,34 @@ const insertData = async () => {
 }
 insertData();
 
+// 유저 정보를 담는 모델 정의
+const User = mongoose.model('User', {
+  username: String,
+  password: String,
+});
 
-var app = express();
+// /login 엔드포인트에서 POST 요청 처리
+app.post('/login', async (req, res) => {
+  const { username, password } = req.body;
+
+  // 데이터베이스에서 해당 유저 정보 조회
+  const user = await User.findOne({ username, password });
+
+  if (user) {
+    // 유저가 존재하면 로그인 성공
+    res.json({ success: true, message: 'Login successful' });
+  } else {
+    // 유저가 존재하지 않으면 로그인 실패
+    res.json({ success: false, message: 'Login failed' });
+  }
+});
+
+// app.listen(8080, () => {
+//   console.log('Server is running on http://localhost:8080');
+// });
+
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

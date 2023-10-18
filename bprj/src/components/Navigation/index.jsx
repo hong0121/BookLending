@@ -13,9 +13,9 @@ function Navigation() {
           </Link>
         </li>
         <li>
-          <Link to="/mypage">
+          <Link to="/login">
             <AiOutlineUser size={20} />
-            MyPage
+            Login
           </Link>
         </li>
         <li>
