@@ -1,15 +1,12 @@
-import { Link, Outlet } from 'react-router-dom';
-import '../App.css'; // 추가
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './index.css'; // 스타일 파일을 불러옵니다.
 
 const Bookitem = ({ bookitem }) => {
-  // 중괄호 안해서 표시 안되었음
-  // props를 parameter에서 가져온다
-  // console.log(book) // 정상
   const { title, author, language, country, year, pages, id, imageLink, link } = bookitem;
 
   return (
-    <div >
-      <Outlet />
+    <div>
       <Link to={`/bookintro/${id}`} className="book-link">
         <div><img src={imageLink} alt={title} /></div>
         <div className="book-details">

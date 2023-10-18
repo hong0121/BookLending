@@ -1,6 +1,6 @@
 // Header 컴포넌트
 import React from 'react';
-import Navigation from './nav'; // 네비게이션 컴포넌트 불러오기
+import Navigation from '../Navigation/index'; // 네비게이션 컴포넌트 불러오기
 
 function Header() {
   return (

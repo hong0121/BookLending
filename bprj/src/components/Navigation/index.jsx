@@ -1,4 +1,3 @@
-// Navigation 컴포넌트
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineBook, AiOutlineUser, AiOutlineQuestionCircle } from 'react-icons/ai';
