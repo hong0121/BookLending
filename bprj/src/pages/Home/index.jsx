@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 // import { useState } from 'react';
 // import dummy from "../public/books.json";
 import axios from 'axios'
-import Booklist from "../components/Booklist/index";
-import Header from "../components/Header/index"; // Header 컴포넌트 불러오기
-import '../App.css'
+import Booklist from "../../components/Booklist/index";
+import Header from "../../components/Header/index"; // Header 컴포넌트 불러오기
+import '../../App.css'
 
 
 const Home = () => {

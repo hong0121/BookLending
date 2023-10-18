@@ -3,10 +3,10 @@
 import { Route, Routes } from 'react-router-dom';
 // import About from './pages/About'
 
-import Home from './pages/Home';
-import LoginPage from './pages/LoginPage';
-import Join from './pages/Join';
-import Bookintro from './pages/Bookintro';
+import Home from './pages/Home/index';
+import LoginPage from './pages/LoginPage/index';
+import Join from './pages/Join/index';
+import Bookintro from './pages/Bookintro/index';
 
 
 function App() {
