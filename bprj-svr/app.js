@@ -1,4 +1,5 @@
 //sudo mongod --port 27018 --dbpath ~/mongodb-data/db
+const booksData = require('./books.json');
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -12,20 +13,27 @@ var usersRouter = require('./routes/users');
 
 const mongoose = require('mongoose');
 const router = express.Router();
-const Book = require('./models/book'); // 모델 불러오기
+const Insertbook = require('./models/Insertbook'); // 모델 불러오기
 
 // 접속관련 함수와 cors는 www파일에 있다.
 
-router.get('/', async (req, res) => {
-  try {
-    const books = await Book.find(); // 데이터베이스에서 모든 책을 가져옴
-    res.json(books); // JSON 형태로 응답
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-module.exports = router;
+// router.get('/', async (req, res) => {
+//   try {
+//     const books = await Book.find(); // 데이터베이스에서 모든 책을 가져옴
+//     res.json(books); // JSON 형태로 응답
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// });
+// module.exports = router;
 
+//mongoose connection1
+// mongoose.connect('mongodb+srv://hong:zl7vXfxM1qv5rpaV@Cluster-Test-001/bprj?retryWrites=true&w=majority', {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
+
+//mongoose connection2
 mongoose.connect('mongodb://localhost:27018/Cluster-Test-001', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -36,6 +44,21 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log('Connected to MongoDB');
 });
+
+const documents = [booksData];
+
+// insertbook
+const insertData = async () => {
+  try {
+    const insertedDocuments = await Insertbook.insertMany(documents);
+    console.log(`컬렉션에 ${insertedDocuments.length} 개의 문서가 추가되었습니다.`);
+  } catch (error) {
+    console.error(error);
+  } finally {
+    await mongoose.connection.close();
+  }
+}
+insertData();
 
 
 var app = express();
